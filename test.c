@@ -3,7 +3,7 @@
 
 int main() {
 	const char *names[] = {"Phomolo", "Thekgo", "Puleng", "Tebatso", "Molemo", "Tshepo", "Isaac"};
-	struct Table *t = create();
+	table_t t = create();
 	ID id;
 	for(int i=0;i<7;i++) {
 		append(t, S, names[i], &names[i]);

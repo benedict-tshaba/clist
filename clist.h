@@ -22,6 +22,8 @@ struct Table {
 	struct Node *array[BUCKET];
 };
 
+typedef struct Table* table_t; //type of pointer to hash table.
+
 /* Creates a hash Table. Returns a pointer to the hash Table struct.
 */
 struct Table *create(void);
