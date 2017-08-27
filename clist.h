@@ -32,7 +32,7 @@ struct Table *create(void);
 	(const char*) key(will be hashed to create an entry into the Table), 
 	(void *) pointer to the data/item you want to add.
 */
-void add(struct Table*,ID, const char *, void *);
+void append(struct Table*,ID, const char *, void *);
 
 /* Frees the hash table and all its associated data.
  Params: pointer to the Table struct which was create()'d.

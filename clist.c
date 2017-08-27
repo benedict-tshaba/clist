@@ -14,7 +14,7 @@ int length(struct Table *t) {
 	return t->size;
 }
 
-void add(struct Table *t,ID id, const char *key, void *data) {
+void append(struct Table *t,ID id, const char *key, void *data) {
 	struct Node *p = (struct Node*)malloc(sizeof(struct Node));
 	int h = hash(key);
 	p->hash = h;
