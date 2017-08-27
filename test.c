@@ -11,7 +11,7 @@ int main() {
 	}
 	double pi = 3.1415;
 	append(t, D, "PIE", &pi);
-	printf("len/size of list: %d\n", length(t));
+	printf("length of list: %d\n", length(t));
 	print(t);
 	libr8(t);
 	return 0;
