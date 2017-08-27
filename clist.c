@@ -14,22 +14,22 @@ int length(struct Table *t) {
 	return t->size;
 }
 
-void append(struct Table *t,ID id, const char *key, void *data) {
+void append(struct Table *t,type_t type, const char *key, void *data) {
 	struct Node *p = (struct Node*)malloc(sizeof(struct Node));
 	int h = hash(key);
 	p->hash = h;
-	p->id = id;
+	p->type = type;
 	p->key = (char*)malloc(strlen(key)+1);
 	strcpy(p->key, key);
-	if(id==I) {
+	if(type==I) {
 		p->data = (int*)malloc(sizeof(int*));
 		memcpy(p->data, data, sizeof(int*));
 	}
-	if(id==S) {
+	if(type==S) {
 		p->data = (char*)malloc(sizeof(char*));
 		memcpy(p->data, data, sizeof(char*));
 	}
-	if(id==D) {
+	if(type==D) {
 		p->data = (double*)malloc(sizeof(double*));
 		memcpy(p->data, data, sizeof(double*));
 	}
@@ -62,19 +62,19 @@ unsigned int hash(const char *x) {
 	return h&1023;
 }
 
-int is_in(struct Table *t, ID type, void *data) {
+int is_in(struct Table *t, type_t type, void *data) {
 	struct Node *p;
 	for(int i=0;i<BUCKET;i++)
 	for(p=t->array[i]; p!=NULL; p=p->next) {
-		if(type == S && p->id == S) {
+		if(type == S && p->type == S) {
 		       	if(strcmp(*(char**)p->data,*(char**)data) == 0)
 				return p->hash;
 		}
-		if(type == I && p->id == I) {
+		if(type == I && p->type == I) {
 		       	if(*(int*)p->data == *(int*)data)
 				return p->hash;
 		}
-		if(type == D && p->id == D) {
+		if(type == D && p->type == D) {
 			if(*(double*)p->data == *(double*)data)
 				return p->hash;
 		}
@@ -88,9 +88,9 @@ void print(struct Table *t) {
 	int i = 0;
 	for(i=0;i<BUCKET;i++)
 	for(p=t->array[i]; p!= NULL; p=nextp) {
-		if(p->id==I) printf("%d ",*(int*)p->data);
-		else if(p->id==S) printf("%s ",*(char**)p->data);
-		else if(p->id==D) printf("%f ",*(double*)p->data);
+		if(p->type==I) printf("%d ",*(int*)p->data);
+		else if(p->type==S) printf("%s ",*(char**)p->data);
+		else if(p->type==D) printf("%f ",*(double*)p->data);
 		nextp = p->next;
 	}
 }

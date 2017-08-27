@@ -6,12 +6,12 @@ unsigned int hash(const char*);
 
 enum {BUCKET = 1024}; //The size of the hash table.
 
-/*Defines a type ID where: I=int, S=string, D=double*/
-typedef enum {I, S, D}ID; 
+/*Defines a type type_t where: I=int, S=string, D=double*/
+typedef enum {I, S, D}type_t; 
 
 struct Node {
 	char *key;
-	ID id;
+	type_t type;
 	void *data;
 	int hash;
 	struct Node *next;
@@ -34,7 +34,7 @@ struct Table *create(void);
 	(const char*) key(will be hashed to create an entry into the Table), 
 	(void *) pointer to the data/item you want to add.
 */
-void append(struct Table*,ID, const char *, void *);
+void append(struct Table*,type_t, const char *, void *);
 
 /* Frees the hash table and all its associated data.
  Params: pointer to the Table struct which was create()'d.
@@ -49,5 +49,5 @@ int length(struct Table*);
 
 /* Returns the index in the array of the item.
  -1 otherwise.*/
-int is_in(struct Table *t, ID, void *);
+int is_in(struct Table *t, type_t, void *);
 #endif
