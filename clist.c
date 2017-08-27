@@ -1,23 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
-unsigned int hash(const char*);
-
-enum {BUCKET = 1024};
-typedef enum {I, S, D}ID;
-
-struct Node {
-	char *key; //const char *key;
-	ID id;
-	void *data;
-	int hash;
-	struct Node *next;
-};
-
-struct Table {
-	struct Node *array[BUCKET];
-};
+#include "clist.h"
 
 struct Table *create(void) {
 	struct Table *t;
@@ -46,18 +30,6 @@ void add(struct Table *t,ID id, const char *key, void *data) {
 	}
 	p->next = t->array[h];
 	t->array[h] = p;
-}
-
-int search(struct Table *t, const char *key, void *data) {
-	struct Node *p;
-	int h = hash(key);
-	for(p=t->array[h%1024]; p!=NULL; p=p->next) {
-		if((p->hash==h) && strcmp(p->key, key) == 0) {
-			//*data = p->data;
-			return 1;
-		}
-	}
-	return 0;
 }
 
 void libr8(struct Table *t) {
@@ -95,19 +67,4 @@ void print(struct Table *t) {
 		else if(p->id==D) printf("%f, ",*(double*)p->data);
 		nextp = p->next;
 	}
-}
-
-int main() {
-	const char *names[] = {"Phomolo", "Thekgo", "Puleng", "Tebatso", "Molemo", "Tshepo", "Isaac"};
-	struct Table *t = create();
-	ID id;
-	for(int i=0;i<7;i++) {
-		add(t, S, names[i], &names[i]);
-		add(t, I, names[(i+3)%7], &i);
-	}
-	double pi = 3.1415;
-	add(t, D, "PIE", &pi);
-	print(t);
-	libr8(t);
-	return 0;
 }
