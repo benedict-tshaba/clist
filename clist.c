@@ -62,6 +62,18 @@ unsigned int hash(const char *x) {
 	return h&1023;
 }
 
+int is_in(struct Table *t, ID type, void *data) {
+	struct Node *p;
+	for(int i=0;i<BUCKET;i++)
+	for(p=t->array[i]; p!=NULL; p=p->next) {
+		if(p->id == type) {
+			return p->hash;
+		}
+	}
+	return 0;
+}
+
+
 void print(struct Table *t) {
 	struct Node *p;
 	struct Node *nextp;

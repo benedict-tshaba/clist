@@ -44,4 +44,8 @@ void print(struct Table*);
 
 /* Returns the number of items in the hash table.*/
 int length(struct Table*);
+
+/* Returns the index in the array of the item.
+ 0 otherwise.*/
+int is_in(struct Table *t, ID, void *);
 #endif
