@@ -6,7 +6,12 @@
 struct Table *create(void) {
 	struct Table *t;
 	t = (struct Table*)calloc(1, sizeof(struct Table));
+	t->size=0;
 	return t;
+}
+
+int length(struct Table *t) {
+	return t->size;
 }
 
 void add(struct Table *t,ID id, const char *key, void *data) {
@@ -30,6 +35,7 @@ void add(struct Table *t,ID id, const char *key, void *data) {
 	}
 	p->next = t->array[h];
 	t->array[h] = p;
+	t->size++;
 }
 
 void libr8(struct Table *t) {
