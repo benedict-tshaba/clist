@@ -46,6 +46,6 @@ void print(struct Table*);
 int length(struct Table*);
 
 /* Returns the index in the array of the item.
- 0 otherwise.*/
+ -1 otherwise.*/
 int is_in(struct Table *t, ID, void *);
 #endif

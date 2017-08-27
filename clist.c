@@ -66,13 +66,21 @@ int is_in(struct Table *t, ID type, void *data) {
 	struct Node *p;
 	for(int i=0;i<BUCKET;i++)
 	for(p=t->array[i]; p!=NULL; p=p->next) {
-		if(p->id == type) {
-			return p->hash;
+		if(type == S && p->id == S) {
+		       	if(strcmp(*(char**)p->data,*(char**)data) == 0)
+				return p->hash;
+		}
+		if(type == I && p->id == I) {
+		       	if(*(int*)p->data == *(int*)data)
+				return p->hash;
+		}
+		if(type == D && p->id == D) {
+			if(*(double*)p->data == *(double*)data)
+				return p->hash;
 		}
 	}
-	return 0;
+	return -1;
 }
-
 
 void print(struct Table *t) {
 	struct Node *p;
@@ -80,9 +88,9 @@ void print(struct Table *t) {
 	int i = 0;
 	for(i=0;i<BUCKET;i++)
 	for(p=t->array[i]; p!= NULL; p=nextp) {
-		if(p->id==I) printf("%d, ",*(int*)p->data);
-		else if(p->id==S) printf("%s, ",*(char**)p->data);
-		else if(p->id==D) printf("%f, ",*(double*)p->data);
+		if(p->id==I) printf("%d ",*(int*)p->data);
+		else if(p->id==S) printf("%s ",*(char**)p->data);
+		else if(p->id==D) printf("%f ",*(double*)p->data);
 		nextp = p->next;
 	}
 }
