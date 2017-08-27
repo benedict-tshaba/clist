@@ -11,6 +11,5 @@ print(mylist); //should return/print "A", 6, 3.1415, "Adam", "C".
 Other supported functions might be prepend, remove, search, sort, etc...
 
 *TODO:*
-** Implement size/length function
 ** Implement sort function
 
