@@ -18,6 +18,7 @@ struct Node {
 };
 
 struct Table {
+	int size;
 	struct Node *array[BUCKET];
 };
 
@@ -31,14 +32,16 @@ struct Table *create(void);
 	(const char*) key(will be hashed to create an entry into the Table), 
 	(void *) pointer to the data/item you want to add.
 */
-void add(struct Table *t,ID, const char *, void *);
+void add(struct Table*,ID, const char *, void *);
 
 /* Frees the hash table and all its associated data.
  Params: pointer to the Table struct which was create()'d.
 */
-void libr8(struct Table *t);
+void libr8(struct Table*);
 
 /* Prints the list. Params: pointer to the hash table.*/
-void print(struct Table *t);
+void print(struct Table*);
 
+/* Returns the number of items in the hash table.*/
+int length(struct Table*);
 #endif
