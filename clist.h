@@ -48,4 +48,8 @@ int is_in(struct Table *t, type_t, void *);
 
 /* Removes the last item in the list.*/
 void pop(table_t);
+
+/* Removes an item from the list if that item is in the list.
+ * Changed to remove_item due to conflict with remove from stdio.h*/
+void remove_item(table_t, type_t, void *);
 #endif

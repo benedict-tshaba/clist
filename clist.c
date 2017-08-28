@@ -80,6 +80,24 @@ void pop(table_t t) {
 	t->array[t->size] = NULL;
 }
 
+void remove_item(table_t t, type_t type, void *data) {
+	int index = is_in(t, type, data);
+	int i=index;
+	if(index == -1) return;
+
+	struct Node *p;
+	p=t->array[index];
+	free(p->data);
+	free(p);
+
+	while(t->array[i] != NULL) {
+		t->array[i] = t->array[i+1];
+		i++;
+	}
+	t->array[i] = NULL;
+	t->size--;
+}
+
 void print(struct Table *t) {
 	struct Node *p;
 	struct Node *nextp;
