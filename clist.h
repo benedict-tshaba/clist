@@ -1,19 +1,15 @@
 #ifndef _CLIST_H
 #define _CLIST_H
 
-/* Returns a hash of key(const char *)*/
-unsigned int hash(const char*);
-
-enum {BUCKET = 1024}; //The size of the hash table.
+enum {BUCKET = 1024}; //The size of the hash table. I naively assume that we will never need a bigger table than this.
 
 /*Defines a type type_t where: I=int, S=string, D=double*/
 typedef enum {I, S, D}type_t; 
 
 struct Node {
-	char *key;
 	type_t type;
 	void *data;
-	int hash;
+	int index;
 	struct Node *next;
 };
 
@@ -34,7 +30,7 @@ struct Table *create(void);
 	(const char*) key(will be hashed to create an entry into the Table), 
 	(void *) pointer to the data/item you want to add.
 */
-void append(struct Table*,type_t, const char *, void *);
+void append(struct Table*,type_t, void *);
 
 /* Frees the hash table and all its associated data.
  Params: pointer to the Table struct which was create()'d.
