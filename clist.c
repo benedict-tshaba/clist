@@ -17,7 +17,7 @@ int length(struct Table *t) {
 
 void append(struct Table *t,type_t type, void *data) {
 	struct Node *p = (struct Node*)malloc(sizeof(struct Node));
-	assert(t->size <= BUCKET-1);
+	assert(t->size <= BUCKET-1); //check for out of bounds access
 	p->index = t->size;
 	p->type = type;	
 	if(type==I) {
@@ -41,8 +41,7 @@ void append(struct Table *t,type_t type, void *data) {
 void libr8(struct Table *t) {
 	struct Node *p;
 	struct Node *nextp;
-	int b;
-	for(b=0; b<BUCKET; b++) {
+	for(int b=0; b<BUCKET; b++) {
 		for(p=t->array[b]; p!=NULL; p=nextp) {
 			nextp = p->next;
 			free(p->data);
