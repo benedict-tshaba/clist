@@ -20,27 +20,26 @@ struct Table {
 
 typedef struct Table* table_t; //type of pointer to hash table.
 
-/* Creates a hash Table. Returns a pointer to the hash Table struct.
+/* Creates a array Table. Returns a pointer to the array Table struct.
 */
 struct Table *create(void);
 
 /* Inserts a new item to the list.
  Params:(struct Table*) Poiter to the Table struct,
-	(ID) id(the type of the data you are adding), 
-	(const char*) key(will be hashed to create an entry into the Table), 
+	(type_t) (the type of the data you are adding), 
 	(void *) pointer to the data/item you want to add.
 */
 void append(struct Table*,type_t, void *);
 
-/* Frees the hash table and all its associated data.
+/* Frees the array table and all its associated data.
  Params: pointer to the Table struct which was create()'d.
 */
 void libr8(struct Table*);
 
-/* Prints the list. Params: pointer to the hash table.*/
+/* Prints the list. Params: pointer to the array table.*/
 void print(struct Table*);
 
-/* Returns the number of items in the hash table.*/
+/* Returns the number of items in the array table.*/
 int length(struct Table*);
 
 /* Returns the index in the array of the item.
