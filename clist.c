@@ -71,6 +71,15 @@ int is_in(struct Table *t, type_t type, void *data) {
 	return -1;
 }
 
+void pop(table_t t) {
+	struct Node *p;
+	p=t->array[t->size-1];
+	free(p->data);
+	free(p);
+	t->size--;
+	t->array[t->size] = NULL;
+}
+
 void print(struct Table *t) {
 	struct Node *p;
 	struct Node *nextp;

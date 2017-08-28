@@ -45,4 +45,7 @@ int length(struct Table*);
 /* Returns the index in the array of the item.
  -1 otherwise.*/
 int is_in(struct Table *t, type_t, void *);
+
+/* Removes the last item in the list.*/
+void pop(table_t);
 #endif
