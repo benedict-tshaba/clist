@@ -1,2 +1,3 @@
 28/08/2017    -    Changed from using a hash table to just implementing a
-simple array. Should be more efficient now.
+simple array. Should be more efficient now. Removed hash function, and its
+dependencies, now indexing using table 'size'.
