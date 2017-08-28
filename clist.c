@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <assert.h>
 #include "clist.h"
 
 struct Table *create(void) {
@@ -14,13 +15,11 @@ int length(struct Table *t) {
 	return t->size;
 }
 
-void append(struct Table *t,type_t type, const char *key, void *data) {
+void append(struct Table *t,type_t type, void *data) {
 	struct Node *p = (struct Node*)malloc(sizeof(struct Node));
-	int h = hash(key);
-	p->hash = h;
-	p->type = type;
-	p->key = (char*)malloc(strlen(key)+1);
-	strcpy(p->key, key);
+	assert(t->size <= BUCKET-1);
+	p->index = t->size;
+	p->type = type;	
 	if(type==I) {
 		p->data = (int*)malloc(sizeof(int*));
 		memcpy(p->data, data, sizeof(int*));
@@ -33,9 +32,10 @@ void append(struct Table *t,type_t type, const char *key, void *data) {
 		p->data = (double*)malloc(sizeof(double*));
 		memcpy(p->data, data, sizeof(double*));
 	}
-	p->next = t->array[h];
-	t->array[h] = p;
+	p->next = t->array[t->size];
+	t->array[t->size] = p;
 	t->size++;
+	t->array[t->size] = NULL;
 }
 
 void libr8(struct Table *t) {
@@ -45,21 +45,11 @@ void libr8(struct Table *t) {
 	for(b=0; b<BUCKET; b++) {
 		for(p=t->array[b]; p!=NULL; p=nextp) {
 			nextp = p->next;
-			free(p->key);
 			free(p->data);
 			free(p);
 		}
 	}
 	free(t);
-}
-
-unsigned int hash(const char *x) {
-	int i;
-	unsigned int h = 0U;
-	for(i=0; x[i]!='\0'; i++) {
-		h = h*65599 + (unsigned char)x[i];
-	}
-	return h&1023;
 }
 
 int is_in(struct Table *t, type_t type, void *data) {
@@ -68,15 +58,15 @@ int is_in(struct Table *t, type_t type, void *data) {
 	for(p=t->array[i]; p!=NULL; p=p->next) {
 		if(type == S && p->type == S) {
 		       	if(strcmp(*(char**)p->data,*(char**)data) == 0)
-				return p->hash;
+				return p->index;
 		}
 		if(type == I && p->type == I) {
 		       	if(*(int*)p->data == *(int*)data)
-				return p->hash;
+				return p->index;
 		}
 		if(type == D && p->type == D) {
 			if(*(double*)p->data == *(double*)data)
-				return p->hash;
+				return p->index;
 		}
 	}
 	return -1;
