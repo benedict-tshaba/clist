@@ -12,5 +12,4 @@ Other supported functions might be prepend, remove, sort, etc...
 
 *TODO:*
 ** Implement sort function
-** Implement remove
 ** Implement prepend - Although at this point it seems unnecessary.
