@@ -23,6 +23,7 @@ int main() {
 	pop(t);
 	i--;
 	}
+	remove_item(t,S,&names[3]);
 	printf("length of new list: %d\n",length(t));
 	print(t);
 	libr8(t);
