@@ -18,6 +18,7 @@ int main() {
 	printf("is_in(%s) returned: %d\nis_in(%s) returned: %d\n",str[0],is_in(t,S,&str[0]),str[1],is_in(t,S,&str[1]));
 	
 	int i = 4;
+	puts("Pop()'ing 4 items from the end of the list");
 	while(i>0){
 	pop(t);
 	i--;
