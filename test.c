@@ -5,11 +5,11 @@ int main() {
 	const char *names[] = {"Phomolo", "Thekgo", "Puleng", "Tebatso", "Molemo", "Tshepo", "Isaac"};
 	table_t t = create();
 	for(int i=0;i<7;i++) {
-		append(t, S, names[i], &names[i]);
-		append(t, I, names[(i+3)%7], &i);
+		append(t, S, &names[i]);
+		append(t, I, &i);
 	}
 	double pi = 3.1415;
-	append(t, D, "PIE", &pi);
+	append(t, D, &pi);
 	printf("length of list: %d\n", length(t));
 	print(t);
 
