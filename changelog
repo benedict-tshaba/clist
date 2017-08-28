@@ -3,3 +3,4 @@ simple array. Should be more efficient now. Removed hash function, and its
 dependencies, now indexing using table 'size'.
 
 	      -    Implemented Pop function.
+	      -	   Implemented remove_item function.
