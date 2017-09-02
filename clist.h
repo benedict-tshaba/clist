@@ -40,29 +40,29 @@ typedef struct Table* table_t; //type of pointer to hash table.
 
 /* Creates a array Table. Returns a pointer to the array Table struct.
 */
-struct Table *create(void);
+table_t create(void);
 
 /* Inserts a new item to the list.
  Params:(struct Table*) Poiter to the Table struct,
 	(type_t) (the type of the data you are adding), 
 	(void *) pointer to the data/item you want to add.
 */
-void append(struct Table*,type_t, void *);
+void append(table_t,type_t, void *);
 
 /* Frees the array table and all its associated data.
  Params: pointer to the Table struct which was create()'d.
 */
-void libr8(struct Table*);
+void libr8(table_t);
 
 /* Prints the list. Params: pointer to the array table.*/
-void print(struct Table*);
+void print(table_t);
 
 /* Returns the number of items in the array table.*/
-int length(struct Table*);
+int length(table_t);
 
 /* Returns the index in the array of the item.
  -1 otherwise.*/
-int is_in(struct Table *t, type_t, void *);
+int is_in(table_t, type_t, void *);
 
 /* Removes the last item in the list.*/
 void pop(table_t);
