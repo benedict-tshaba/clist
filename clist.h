@@ -70,4 +70,8 @@ void pop(table_t);
 /* Removes an item from the list if that item is in the list.
  * Changed to remove_item due to conflict with remove from stdio.h*/
 void remove_item(table_t, type_t, void *);
+
+/* Sorts the 'list' in place(ascending order), takes in the pointer 
+ * to the 'list' as its argument and returns nothing.*/
+void sort_asc(table_t);
 #endif
