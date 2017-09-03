@@ -110,8 +110,9 @@ void remove_item(table_t t, type_t type, void *data) {
 	free(p->data);
 	free(p);
 
-	while(t->array[i] != NULL) {
+	while((p=t->array[i]) != NULL) {
 		t->array[i] = t->array[i+1];
+		p->index = i-1;
 		i++;
 	}
 	t->array[i] = NULL;
@@ -139,9 +140,15 @@ void sort_asc(table_t t) {
 	struct Node *p;
 	struct Node *nextp;
 	for(int i=0; i<t->size; i++)
-		for(int j=0; j<t->size; j++)
-			for(p=t->array[i];p != NULL; i++)
-				;
+		for(p=t->array[i],nextp=t->array[i+1];p != NULL && nextp != NULL; i++) {
+			if((p->type == I || p->type == D) && (nextp->type == I || nextp->type == D)) {
+				if(*(int*)p->data > *(int*)nextp->data)
+					_swap(t,p,nextp);
+			}
+			if(p->type == S && nextp->type == I) {
+				_swap(t,p,nextp);
+			}
+		}
 }	
 
 

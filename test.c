@@ -23,8 +23,15 @@ int main() {
 	pop(t);
 	i--;
 	}
+	int z3=3;
+	int z2=2;
 	remove_item(t,S,&names[3]);
 	printf("length of new list: %d\n",length(t));
+	print(t);
+	printf("%s is @ %d\n",names[4],is_in(t,S,&names[4]));
+	remove_item(t,I,&z3);
+	remove_item(t,I,&z2);
+	printf("%s is now @ %d\n",names[4],is_in(t,S,&names[4]));
 	print(t);
 	libr8(t);
 	return 0;
