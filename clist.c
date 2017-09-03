@@ -119,7 +119,7 @@ void remove_item(table_t t, type_t type, void *data) {
 }
 
 //helper function for sort_asc. Not visible to the outside.
-void swap(table_t t, struct Node *s, struct Node *d) {
+void _swap(table_t t, struct Node *s, struct Node *d) {
 	int srci = s->index;
 	int dsti = d->index;
 	struct Node *temp;
