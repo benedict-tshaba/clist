@@ -118,15 +118,43 @@ void remove_item(table_t t, type_t type, void *data) {
 	t->size--;
 }
 
+//helper function for sort_asc. Not visible to the outside.
+void swap(table_t t, struct Node *s, struct Node *d) {
+	int srci = s->index;
+	int dsti = d->index;
+	struct Node *temp;
+
+	// swap the indices first, to reflect new changes.
+	s->index ^= d->index;
+	d->index ^= s->index;
+	s->index ^= d->index;
+
+	// swap the pointers in our array.
+	temp = t->array[srci];
+	t->array[srci] = t->array[dsti];
+	t->array[dsti] = temp;
+}
+
+void sort_asc(table_t t) {
+	struct Node *p;
+	struct Node *nextp;
+	for(int i=0; i<t->size; i++)
+		for(int j=0; j<t->size; j++)
+			for(p=t->array[i];p != NULL; i++)
+				;
+}	
+
+
 void print(struct Table *t) {
 	struct Node *p;
 	struct Node *nextp;
 	int i = 0;
-	for(i=0;i<BUCKET;i++)
+	for(i=0;i<t->size;i++) //changed i<BUCKET; because be already know the size of our 'list'
 	for(p=t->array[i]; p!= NULL; p=nextp) {
 		if(p->type==I) printf("%d ",*(int*)p->data);
 		else if(p->type==S) printf("%s ",*(char**)p->data);
 		else if(p->type==D) printf("%f ",*(double*)p->data);
 		nextp = p->next;
 	}
+	puts(""); //print a newline at end of list.
 }
