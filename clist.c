@@ -51,7 +51,7 @@ void append(struct Table *t,type_t type, void *data) {
 	if(type==S) {
 		p->data = (char*)malloc(sizeof(char*));
 		memcpy(p->data, data, sizeof(char*));
-		p->repr = _hash((const char*)data);
+		p->repr = _hash(*(const char**)data);
 	}
 	if(type==D) {
 		p->data = (double*)malloc(sizeof(double*));
@@ -178,9 +178,9 @@ void print(struct Table *t) {
 	int i = 0;
 	for(i=0;i<t->size;i++) //changed i<BUCKET; because be already know the size of our 'list'
 	for(p=t->array[i]; p!= NULL; p=nextp) {
-		if(p->type==I) printf("%d ",*(int*)p->data);
-		else if(p->type==S) printf("%s ",*(char**)p->data);
-		else if(p->type==D) printf("%f ",*(double*)p->data);
+		if(p->type==I) printf("%d ",*(int*)p->data,p->repr);
+		else if(p->type==S) printf("%s ",*(char**)p->data,p->repr);
+		else if(p->type==D) printf("%f ",*(double*)p->data,p->repr);
 		nextp = p->next;
 	}
 	puts(""); //print a newline at end of list.
