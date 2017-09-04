@@ -46,14 +46,17 @@ void append(struct Table *t,type_t type, void *data) {
 	if(type==I) {
 		p->data = (int*)malloc(sizeof(int*));
 		memcpy(p->data, data, sizeof(int*));
+		p->repr = *(long int*)data;
 	}
 	if(type==S) {
 		p->data = (char*)malloc(sizeof(char*));
 		memcpy(p->data, data, sizeof(char*));
+		p->repr = _hash((const char*)data);
 	}
 	if(type==D) {
 		p->data = (double*)malloc(sizeof(double*));
 		memcpy(p->data, data, sizeof(double*));
+		p->repr = *(long int*)data;
 	}
 	p->next = t->array[t->size];
 	t->array[t->size] = p;
