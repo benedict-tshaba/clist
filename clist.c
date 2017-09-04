@@ -24,6 +24,9 @@
 #include <assert.h>
 #include "clist.h"
 
+long int _hash(const char *);
+void _swap(table_t, struct Node*, struct Node*);
+
 struct Table *create(void) {
 	struct Table *t;
 	t = (struct Table*)calloc(1, sizeof(struct Table));
@@ -119,7 +122,7 @@ void remove_item(table_t t, type_t type, void *data) {
 	t->size--;
 }
 
-//helper function for sort_asc. Not visible to the outside.
+//helper functions for sort_asc. Not visible to the outside.
 void _swap(table_t t, struct Node *s, struct Node *d) {
 	int srci = s->index;
 	int dsti = d->index;
@@ -136,6 +139,20 @@ void _swap(table_t t, struct Node *s, struct Node *d) {
 	t->array[dsti] = temp;
 }
 
+long int strtoln(char *str) {
+        int i=0;
+        int c;
+        long int ret=0;
+        while(str[i] != '\0') {
+                c = str[i];
+                ret += c;
+                i++;    
+        }
+        return ret;
+
+}
+//End of helper functions.
+
 void sort_asc(table_t t) {
 	struct Node *p;
 	struct Node *nextp;
@@ -149,7 +166,7 @@ void sort_asc(table_t t) {
 				_swap(t,p,nextp);
 			}
 		}
-}	
+}
 
 
 void print(struct Table *t) {
