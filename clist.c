@@ -142,7 +142,7 @@ void _swap(table_t t, struct Node *s, struct Node *d) {
 	t->array[dsti] = temp;
 }
 
-long int strtoln(char *str) {
+long int _hash(const char *str) {
         int i=0;
         int c;
         long int ret=0;
@@ -158,17 +158,17 @@ long int strtoln(char *str) {
 
 void sort_asc(table_t t) {
 	struct Node *p;
-	struct Node *nextp;
-	for(int i=0; i<t->size; i++)
-		for(p=t->array[i],nextp=t->array[i+1];p != NULL && nextp != NULL; i++) {
-			if((p->type == I || p->type == D) && (nextp->type == I || nextp->type == D)) {
-				if(*(int*)p->data > *(int*)nextp->data)
-					_swap(t,p,nextp);
-			}
-			if(p->type == S && nextp->type == I) {
-				_swap(t,p,nextp);
+	struct Node *np;
+	int i=0, j=0;
+	for(i,p=t->array[i];i<t->size;i++) {
+		int index = i;
+		for(j=i,np=t->array[i];j<t->size;j++) {
+			if(p->repr > np->repr) {
+				index = j;
+				_swap(t,p,np);
 			}
 		}
+	}
 }
 
 
