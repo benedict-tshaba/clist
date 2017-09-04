@@ -4,3 +4,12 @@ dependencies, now indexing using table 'size'.
 
 	      -    Implemented Pop function.
 	      -	   Implemented remove_item function.
+
+02/09/2017    -    Implemented sort_asc function. But later realised that a
+redesign was necessary.
+
+04/09/2017    -    Redesigned the library, now each item in the list has
+associated with it a 'representation' in the form of a long int, this should
+make it easier to sort elements without being confined only to quadratic time
+algorithms. Since the elements will be represented as a long int, sorting and
+other data manipulations should be trivial.
