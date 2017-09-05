@@ -132,9 +132,14 @@ void _swap(table_t t, struct Node *s, struct Node *d) {
 	struct Node *temp;
 
 	// swap the indices first, to reflect new changes.
-	s->index ^= d->index;
+	/*s->index ^= d->index;
 	d->index ^= s->index;
 	s->index ^= d->index;
+*/
+	int tp;
+	tp = s->index;
+	s->index = d->index;
+	d->index = tp;
 
 	// swap the pointers in our array.
 	temp = t->array[srci];
