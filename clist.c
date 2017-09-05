@@ -56,7 +56,7 @@ void append(struct Table *t,type_t type, void *data) {
 	if(type==D) {
 		p->data = (double*)malloc(sizeof(double*));
 		memcpy(p->data, data, sizeof(double*));
-		p->repr = *(long int*)data;
+		p->repr = (*(double*)data >=0) ? (long int)(*(double*)data + 0.5) : (long int)(*(double*)data - 0.5);
 	}
 	p->next = t->array[t->size];
 	t->array[t->size] = p;
@@ -143,32 +143,40 @@ void _swap(table_t t, struct Node *s, struct Node *d) {
 }
 
 long int _hash(const char *str) {
-        int i=0;
-        int c;
         long int ret=0;
-        while(str[i] != '\0') {
-                c = str[i];
-                ret += c;
-                i++;    
+        for(int i=0;str[i] != '\0';i++) {
+                ret += str[i];    
         }
-        return ret;
+        return ret*737; //737 chosen arbitrarily to ensure that the string representation is no less than an ordinary integer.
 
+}
+
+void _hqsort(table_t t, int m, int n) {
+	int i,j,k;
+	struct Node *key;
+	if(m < n) {
+		k = (m+n)/2;
+		_swap(t, t->array[m], t->array[k]);
+		key = t->array[m];
+		i = m+1;
+		j = n;
+		while(i<=j) {
+			while((i<=n) && (t->array[i]->repr<=key->repr))
+				i++;
+			while((j>=m) && (t->array[j]->repr>key->repr))
+				j--;
+			if(i<j)
+				_swap(t, t->array[i], t->array[j]);
+		}
+		_swap(t, t->array[m],t->array[j]);
+		_hqsort(t,m,j-1);
+		_hqsort(t,j+1,n);
+	}
 }
 //End of helper functions.
 
 void sort_asc(table_t t) {
-	struct Node *p;
-	struct Node *np;
-	int i=0, j=0;
-	for(i,p=t->array[i];i<t->size;i++) {
-		int index = i;
-		for(j=i,np=t->array[i];j<t->size;j++) {
-			if(p->repr > np->repr) {
-				index = j;
-				_swap(t,p,np);
-			}
-		}
-	}
+	_hqsort(t,0,t->size-1);
 }
 
 
@@ -178,9 +186,9 @@ void print(struct Table *t) {
 	int i = 0;
 	for(i=0;i<t->size;i++) //changed i<BUCKET; because be already know the size of our 'list'
 	for(p=t->array[i]; p!= NULL; p=nextp) {
-		if(p->type==I) printf("%d ",*(int*)p->data,p->repr);
-		else if(p->type==S) printf("%s ",*(char**)p->data,p->repr);
-		else if(p->type==D) printf("%f ",*(double*)p->data,p->repr);
+		if(p->type==I) printf("%d ",*(int*)p->data);
+		else if(p->type==S) printf("%s ",*(char**)p->data);
+		else if(p->type==D) printf("%f ",*(double*)p->data);
 		nextp = p->next;
 	}
 	puts(""); //print a newline at end of list.
