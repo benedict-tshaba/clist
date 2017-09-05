@@ -41,8 +41,7 @@ int main() {
 	i--;
 	}
 	assert(11 == length(t));
-	int z3=3;
-	int z2=2;
+	int z3=3, z2=2;
 	puts("\nTesting remove_item()...");
 	remove_item(t,S,&names[3]);
 	printf("length of new list: %d\n",length(t));

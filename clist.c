@@ -79,7 +79,7 @@ void libr8(struct Table *t) {
 
 int is_in(struct Table *t, type_t type, void *data) {
 	struct Node *p;
-	for(int i=0;i<BUCKET;i++)
+	for(int i=0;i<t->size;i++)
 	for(p=t->array[i]; p!=NULL; p=p->next) {
 		if(type == S && p->type == S) {
 		       	if(strcmp(*(char**)p->data,*(char**)data) == 0)
@@ -109,7 +109,7 @@ void pop(table_t t) {
 void remove_item(table_t t, type_t type, void *data) {
 	int index = is_in(t, type, data);
 	int i=index;
-	if(index == -1) return;
+	if(index == -1) return; //data is not in list.
 
 	struct Node *p;
 	p=t->array[index];
