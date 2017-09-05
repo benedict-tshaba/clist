@@ -2,8 +2,10 @@ This Project aims to implement the LIST data structure as in Python to be usable
 
 Example Usage:
 ```
+#include <stdio.h>
 #include "clist.h"
 
+int main() {
 table_t t = create();
 int i = 6;
 double pi = 3.1415;
@@ -18,6 +20,9 @@ for(int j=0; j<3; j++) {
 print(t); // should print: 6 3.1415 Kevin Adam Carl
 sort_asc(t); // sorts the list in place
 print(t); // should print: 3.1415 6 Adam Carl Kevin
+
+return 0;
+}
 
 ```
 

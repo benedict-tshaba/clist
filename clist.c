@@ -156,6 +156,20 @@ long int _hash(const char *str) {
 
 }
 
+void _str_sort(table_t t) {
+	//Finally sort the strings properly, this will incur a heavy penalty.
+	int ind=0;
+	while(t->array[ind]!=NULL && t->array[ind+1]!=NULL) {
+		if(t->array[ind]->repr%6737==0 && t->array[ind+1]->repr%6737==0) {
+		if(strcmp(*(char**)t->array[ind]->data, *(char**)t->array[ind+1]->data) > 0) {
+			_swap(t,t->array[ind],t->array[ind+1]);
+
+		}
+		}
+		ind++;
+	}
+}
+
 void _hqsort(table_t t, int m, int n) {
 	int i,j,k;
 	struct Node *key;
@@ -177,23 +191,12 @@ void _hqsort(table_t t, int m, int n) {
 		_hqsort(t,m,j-1);
 		_hqsort(t,j+1,n);
 	}
-
-	//Finally sort the strings properly, this will incur a heavy penalty.
-	int ind=0;
-	while(t->array[ind]!=NULL && t->array[ind+1]!=NULL) {
-		if(t->array[ind]->repr%6737==0 && t->array[ind+1]->repr%6737==0) {
-		if(strcmp(*(char**)t->array[ind]->data, *(char**)t->array[ind+1]->data) > 0) {
-			_swap(t,t->array[ind],t->array[ind+1]);
-
-		}
-		}
-		ind++;
-	}
 }
 //End of helper functions.
 
 void sort_asc(table_t t) {
 	_hqsort(t,0,t->size-1);
+	_str_sort(t);
 }
 
 
