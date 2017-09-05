@@ -191,12 +191,12 @@ void _hqsort(table_t t, int m, int n) {
 		_hqsort(t,m,j-1);
 		_hqsort(t,j+1,n);
 	}
+	_str_sort(t);
 }
 //End of helper functions.
 
 void sort_asc(table_t t) {
 	_hqsort(t,0,t->size-1);
-	_str_sort(t);
 }
 
 
