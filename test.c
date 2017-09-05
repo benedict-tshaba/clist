@@ -41,10 +41,11 @@ int main() {
 	i--;
 	}
 	assert(11 == length(t));
+	printf("After pop()'ing 4 items length = %d\n",length(t));
 	int z3=3, z2=2;
 	puts("\nTesting remove_item()...");
 	remove_item(t,S,&names[3]);
-	printf("length of new list: %d\n",length(t));
+	printf("length of new list after removing %s : %d\n",names[3],length(t));
 	print(t);
 	printf("%s is @ %d\n",names[4],is_in(t,S,&names[4]));
 	remove_item(t,I,&z3);
