@@ -26,9 +26,9 @@ typedef enum {I, S, D}type_t;
 
 struct Node {
 	type_t type;
+	int index;
 	void *data;
 	long int repr; //this is the internal representation of the data.
-	int index;
 	struct Node *next;
 };
 
