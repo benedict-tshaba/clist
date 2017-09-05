@@ -17,3 +17,7 @@ other data manipulations should be trivial.
 05/09/2017    -    Implemented quick sort, which is better than the previous
 insertion sort. But somehow the system broke particularly with the function in
 charge of manipulating list size/length.
+
+	      -    Turns out that the code is fine, just that in my tests I
+	      was trying to remove an element which was no longer in the list,
+	      I negleted the fact that I had previously sorted the list.
