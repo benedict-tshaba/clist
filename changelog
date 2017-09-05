@@ -21,3 +21,6 @@ charge of manipulating list size/length.
 	      -    Turns out that the code is fine, just that in my tests I
 	      was trying to remove an element which was no longer in the list,
 	      I negleted the fact that I had previously sorted the list.
+	      -    Added a hack to get around the fact that sorting double
+	      precision integers is a bitch. Now the only issue is sorting
+	      lists. The scheme I devised has failed me.
