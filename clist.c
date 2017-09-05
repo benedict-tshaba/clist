@@ -147,7 +147,7 @@ long int _hash(const char *str) {
         for(int i=0;str[i] != '\0';i++) {
                 ret += str[i];    
         }
-        return ret*737; //737 chosen arbitrarily to ensure that the string representation is no less than an ordinary integer.
+        return ret*6737; //6737 chosen arbitrarily to ensure that the string representation is no less than an ordinary integer. Perhaps a prime number might do better.
 
 }
 
@@ -171,6 +171,18 @@ void _hqsort(table_t t, int m, int n) {
 		_swap(t, t->array[m],t->array[j]);
 		_hqsort(t,m,j-1);
 		_hqsort(t,j+1,n);
+	}
+
+	//Finally sort the strings properly, this will incur a heavy penalty.
+	int ind=0;
+	while(t->array[ind]!=NULL && t->array[ind+1]!=NULL) {
+		if(t->array[ind]->repr%6737==0 && t->array[ind+1]->repr%6737==0) {
+		if(strcmp(*(char**)t->array[ind]->data, *(char**)t->array[ind+1]->data) > 0) {
+			_swap(t,t->array[ind],t->array[ind+1]);
+
+		}
+		}
+		ind++;
 	}
 }
 //End of helper functions.
