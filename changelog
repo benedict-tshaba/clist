@@ -26,3 +26,5 @@ charge of manipulating list size/length.
 	      lists. The scheme I devised has failed me.
 	      -    Finally managed to get the sort function to work, but as
 	      usual something else broke.
+	      -    Everything works fine/all tests pass. It turned out that
+	      using xor to swap integers was a bad idea.

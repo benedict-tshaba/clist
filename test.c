@@ -26,7 +26,7 @@ int main() {
 	puts("\nTesting sort()...");
 	sort_asc(t);
 	print(t);
-	
+
 	puts("\nTesting is_in()...");
 	printf("%f is in list @ %d\n%s is in list @ %d\n",pi,is_in(t,D,&pi),names[0], is_in(t,S,&names[0]));
 	const char *str[] = {"notinlist","test"};
@@ -46,8 +46,8 @@ int main() {
 
 	int z3=3, z2=2;
 	puts("\nTesting remove_item()...");
-	remove_item(t,S,&names[1]);
-	printf("length of new list after removing %s : %d\n",names[1],length(t));
+	remove_item(t,S,&names[6]);
+	printf("length of new list after removing %s : %d\n",names[6],length(t));
 	print(t);
 	printf("%s is @ %d\n",names[4],is_in(t,S,&names[4]));
 	remove_item(t,I,&z3);
