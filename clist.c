@@ -65,10 +65,6 @@ void append(struct Table *t,type_t type, void *data) {
 }
 
 void prepend(struct Table *t,type_t type, void *data) {
-	if(t->size == 0) { //this is the first ever element.
-		append(t,type,data);
-	}
-
 	struct Node *p = (struct Node*)malloc(sizeof(struct Node));
 	assert(t->size <= BUCKET-1); //check for out of bounds access
 	
