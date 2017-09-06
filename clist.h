@@ -50,6 +50,13 @@ table_t create(void);
 */
 void append(table_t,type_t, void *);
 
+/* Inserts a new item to the beginning of the list.
+ Params:(struct Table*) Poiter to the Table struct,
+	(type_t) (the type of the data you are adding), 
+	(void *) pointer to the data/item you want to add.
+*/
+void prepend(table_t,type_t, void *);
+
 /* Frees the array table and all its associated data.
  Params: pointer to the Table struct which was create()'d.
 */

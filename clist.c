@@ -64,6 +64,39 @@ void append(struct Table *t,type_t type, void *data) {
 	t->array[t->size] = NULL;
 }
 
+void prepend(struct Table *t,type_t type, void *data) {
+	struct Node *p = (struct Node*)malloc(sizeof(struct Node));
+	assert(t->size <= BUCKET-1); //check for out of bounds access
+	
+	p->type = type;
+	if(type==I) {
+		p->data = (int*)malloc(sizeof(int*));
+		memcpy(p->data, data, sizeof(int*));
+		p->repr = *(long int*)data;
+	}
+	if(type==S) {
+		p->data = (char*)malloc(sizeof(char*));
+		memcpy(p->data, data, sizeof(char*));
+		p->repr = _hash(*(const char**)data);
+	}
+	if(type==D) {
+		p->data = (double*)malloc(sizeof(double*));
+		memcpy(p->data, data, sizeof(double*));
+		p->repr = *(double*)data+1; //>=0) ? (long int)(*(double*)data + 0.5) : (long int)(*(double*)data - 0.5);
+	}
+
+	int size = t->size;
+
+	for(size; size>0 ;size--) {
+		t->array[size] = t->array[size-1];
+		t->array[size]->index++;
+	}
+	p->index = size;
+	t->array[size] = p;
+	t->size++;
+	p->next = t->array[t->size] = NULL;
+}
+
 void libr8(struct Table *t) {
 	struct Node *p;
 	struct Node *nextp;
