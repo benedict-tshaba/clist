@@ -26,7 +26,4 @@ return 0;
 
 ```
 
-Other supported functions are remove, and pop.
-
-# TODO:
-### Implement prepend - Although at this point it seems unnecessary.
+Other supported functions are remove, prepend, and pop.
