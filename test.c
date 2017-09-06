@@ -58,6 +58,10 @@ int main() {
 	puts("\nTesting sort(): sorting list...");
 	sort_asc(t);
 	print(t);
+	printf("\nTesting prepend(), by prepend()'ing : %s\n",names[5]);
+	prepend(t,S,&names[5]);
+	//prepend(t,S,&names[6]);
+	print(t);
 	puts("\n[!]Done[!]\nFree()'ing/liberating the list...");
 	libr8(t);
 	return 0;
