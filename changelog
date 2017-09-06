@@ -28,3 +28,7 @@ charge of manipulating list size/length.
 	      usual something else broke.
 	      -    Everything works fine/all tests pass. It turned out that
 	      using xor to swap integers was a bad idea.
+
+06/09/2017    -    Implemented prepend function but as I have come to expect,
+it only half works prepend()'ing only one element and seg'faulting on the
+next.
