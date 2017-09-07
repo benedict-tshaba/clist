@@ -21,6 +21,7 @@ print(t); // should print: 6 3.1415 Kevin Adam Carl
 sort_asc(t); // sorts the list in place
 print(t); // should print: 3.1415 6 Adam Carl Kevin
 
+libr8(t); //dont forget to free your list after use, lest you leak memory.
 return 0;
 }
 
