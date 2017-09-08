@@ -3,7 +3,7 @@ CFLAGS=-c -Wall -Werror -fPIC
 LDFLAGS= -shared -Wl,-soname,libclist.1
 SOURCES=clist.c
 OBJECTS=$(SOURCES:.c=.o)
-EXECUTABLE=clist.so.1
+EXECUTABLE=libclist.so.1.0
 
 all: $(SOURCES) $(EXECUTABLE)
 	
