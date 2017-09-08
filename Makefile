@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-c -Wall -Werror -fPIC
-LDFLAGS= -shared -Wl,-soname,libclist.1
+LDFLAGS= -shared -Wl,-soname,libclist.so.1
 SOURCES=clist.c
 OBJECTS=$(SOURCES:.c=.o)
 EXECUTABLE=libclist.so.1.0
