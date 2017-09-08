@@ -85,9 +85,9 @@ void prepend(struct Table *t,type_t type, void *data) {
 		p->repr = *(double*)data+1; //>=0) ? (long int)(*(double*)data + 0.5) : (long int)(*(double*)data - 0.5);
 	}
 
-	int size = t->size;
+	int size;
 
-	for(size; size>0 ;size--) {
+	for(size=t->size; size>0 ;size--) {
 		t->array[size] = t->array[size-1];
 		t->array[size]->index++;
 	}
