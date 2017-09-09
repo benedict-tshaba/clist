@@ -17,6 +17,7 @@ install:
 	cp $(EXECUTABLE) /usr/local/lib
 	cp *.h /usr/local/include
 	ln -sf /usr/local/lib/$(EXECUTABLE) /usr/local/lib/libclist.so
+	ldconfig
 
 uninstall:
 	rm /usr/local/lib/$(EXECUTABLE)
