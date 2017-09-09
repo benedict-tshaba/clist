@@ -18,6 +18,10 @@ install:
 	cp *.h /usr/local/include
 	ln -sf /usr/local/lib/$(EXECUTABLE) /usr/local/lib/libclist.so
 
+uninstall:
+	rm /usr/local/lib/$(EXECUTABLE)
+	rm /usr/local/include/clist.h
+
 clean:
 	rm *.o *.so*
 
