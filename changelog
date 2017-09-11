@@ -32,3 +32,5 @@ charge of manipulating list size/length.
 06/09/2017    -    Implemented prepend function but as I have come to expect,
 it only half works prepend()'ing only one element and seg'faulting on the
 next.
+
+09/09/2017    -    Create makefile for building and installation.
